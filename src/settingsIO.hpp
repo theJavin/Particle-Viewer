@@ -18,6 +18,8 @@
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
 
+#include "../../Source/commonStructs.h"
+
 class SettingsIO
 {
 public:
@@ -47,144 +49,146 @@ public:
 		this->posName = posName;
 		this->statsName = statsName;
 		this->comName = comName;
-		std::ifstream data;
-		posFile = "/PosAndVel";
+		//std::ifstream data;
+		posFile = "../../NodeStruct";
 		statsFile = "/RunSetup";
 		comFile = "/COMFile";
-		std::string name;
+		//std::string name;
 		std::string blank;
 		errorCount = 0;
 		isPlaying = false;
-		data.open(statsName.c_str());
+		//data.open(statsName.c_str());
 
-		if(data.good() && data.is_open())
+		std::ifstream data;
+		std::string name;
+		
+		data.open("../../simulationSetup");
+		
+		if(data.is_open() == 1)
 		{
 			getline(data,name,'=');
-			data >> this->InitialPosition1.x;
+			//data >> NodesMusclesFileOrPreviousRunsFile;
+			
 			getline(data,name,'=');
-			data >> this->InitialPosition1.y;
+			//data >> NodesMusclesFileName;
+			
 			getline(data,name,'=');
-			data >> this->InitialPosition1.z;
+			//data >> PreviousRunFileName;
+			
 			getline(data,name,'=');
-			data >> this->InitialPosition2.x;
+			data >> LineWidth;
+			
 			getline(data,name,'=');
-			data >> this->InitialPosition2.y;
+			//data >> NodeRadiusAdjustment;
+			
 			getline(data,name,'=');
-			data >> this->InitialPosition2.z;
-
+			//data >> MyocyteForcePerMass;
+			
 			getline(data,name,'=');
-			data >> this->InitialVelocity1.x;
+			//data >> MyocyteForcePerMassStDev;
+			
 			getline(data,name,'=');
-			data >> this->InitialVelocity1.y;
+			//data >> BloodPressure;
+			
 			getline(data,name,'=');
-			data >> this->InitialVelocity1.z;
+			//data >> MassOfAtria;
+			
 			getline(data,name,'=');
-			data >> this->InitialVelocity2.x;
+			//data >> RadiusOfAtria;
+			
 			getline(data,name,'=');
-			data >> this->InitialVelocity2.y;
+			//data >> BaseMuscleRelaxedStrength;
+			
 			getline(data,name,'=');
-			data >> this->InitialVelocity2.z;
-
+			//data >> BaseMuscleCompresionStopFraction;
+			
 			getline(data,name,'=');
-			data >> this->InitialSpin1.x;
+			//data >> BaseMuscleCompresionStopFractionStDev;
+			
 			getline(data,name,'=');
-			data >> this->InitialSpin1.y;
+			//data >> BaseMuscleContractionDuration;
+			
 			getline(data,name,'=');
-			data >> this->InitialSpin1.z;
+			//data >> BaseMuscleContractionDurationStDev;
+			
 			getline(data,name,'=');
-			data >> this->InitialSpin1.w;
-
+			//data >> BaseMuscleRechargeDuration;
+			
 			getline(data,name,'=');
-			data >> this->InitialSpin2.x;
+			//data >> BaseMuscleRechargeDurationStDev;
+			
 			getline(data,name,'=');
-			data >> this->InitialSpin2.y;
+			//data >> BaseMuscleConductionVelocity;
+			
 			getline(data,name,'=');
-			data >> this->InitialSpin2.z;
+			//data >> BaseMuscleConductionVelocityStDev;
+			
 			getline(data,name,'=');
-			data >> this->InitialSpin2.w;
-
+			//data >> MaxNumberOfperiodicEctopicEvents;
+			
 			getline(data,name,'=');
-			data >> this->FractionEarthMassOfBody1;
+			//data >> BeatPeriod;
+			
 			getline(data,name,'=');
-			data >> this->FractionEarthMassOfBody2;
-
+			//data >> PrintRate;
+			
 			getline(data,name,'=');
-			data >> this->FractionFeBody1;
+			data >> DrawRate;
+			
 			getline(data,name,'=');
-			data >> this->FractionSiBody1;
+			data >> Dt;
+			
 			getline(data,name,'=');
-			data >> this->FractionFeBody2;
+			//data >> ReadyColor.x;
+			
 			getline(data,name,'=');
-			data >> this->FractionSiBody2;
-
+			//data >> ReadyColor.y;
+			
 			getline(data,name,'=');
-			data >> this->DampRateBody1;
+			//data >> ReadyColor.z;
+			
 			getline(data,name,'=');
-			data >> this->DampRateBody2;
-
+			//data >> ContractingColor.x;
+			
 			getline(data,name,'=');
-			data >> this->EnergyTargetBody1;
+			//data >> ContractingColor.y;
+			
 			getline(data,name,'=');
-			data >> this->EnergyTargetBody2;
-
+			//data >> ContractingColor.z;
+			
 			getline(data,name,'=');
-			data >> N;
-
+			//data >> RestingColor.x;
+			
 			getline(data,name,'=');
-			data >> this->TotalRunTime;
+			//data >> RestingColor.y;
+			
 			getline(data,name,'=');
-			data >> this->DampTime;
+			//data >> RestingColor.z;
+			
 			getline(data,name,'=');
-			data >> this->DampRestTime;
+			//data >> DeadColor.x;
+			
 			getline(data,name,'=');
-			data >> this->EnergyAdjustmentTime;
+			//data >> DeadColor.y;
+			
 			getline(data,name,'=');
-			data >> this->EnergyAdjustmentRestTime;
+			//data >> DeadColor.z;
+			
 			getline(data,name,'=');
-			data >> this->SpinRestTime;
-
+			//data >> BackGroundRed;
+			
 			getline(data,name,'=');
-			data >> this->Dt;
-
+			//data >> BackGroundGreen;
+			
 			getline(data,name,'=');
-			data >> this->WriteToFile;
-
-			getline(data,name,'=');
-			data >> this->RecordRate;
-
-			getline(data,name,'=');
-			data >> this->DensityFe;
-			getline(data,name,'=');
-			data >> this->DensitySi;
-
-			getline(data,name,'=');
-			data >> this->KFe;
-			getline(data,name,'=');
-			data >> this->KSi;
-			getline(data,name,'=');
-			data >> this->KRFe;
-			getline(data,name,'=');
-			data >> this->KRSi;
-			getline(data,name,'=');
-			data >> this->SDFe;
-			getline(data,name,'=');
-			data >> this->SDSi;
-
-			getline(data,name,'=');
-			data >> this->DrawRate;
-			getline(data,name,'=');
-			data >> this->DrawQuality;
-
-			getline(data,name,'=');
-			data >> this->UseMultipleGPU;
-
-			getline(data,name,'=');
-			data >> this->UniversalGravity;
-			getline(data,name,'=');
-			data >> this->MassOfEarth;
-			getline(data,name,'=');
-			data >> this->Pi;
+			//data >> BackGroundBlue;
 		}
+		else
+		{
+			printf("\nTSU Error could not open simulationSetup file\n");
+			exit(0);
+		}
+		/*
 		else
 		{
 			this->InitialPosition1.x = 100;
@@ -241,7 +245,7 @@ public:
 			this->UniversalGravity = 100;
 			this->MassOfEarth = 100;
 			this->Pi = 100;
-		}
+		}*/
 		data.close();
 		frames = getFrames();
 	}
@@ -251,10 +255,10 @@ public:
 	/*
 	 * Reads positions and velocities from a file at a specifc frame
 	 */
-	void readPosVelFile(long frame, Particle *part,bool readVelocity)
+	void readNodeStructFile(long frame, Particle *part,bool readVelocity)
 	{
-		FILE *PosAndVelFile = fopen(posName.c_str(), "r");
-		if(PosAndVelFile)
+		FILE *NodeStructFile = fopen(posName.c_str(), "r");
+		if(NodeStructFile)
 		{
 			if(frame >= frames)
 			{
@@ -266,23 +270,23 @@ public:
 				frame = 0;
 				isPlaying = false;
 			}
-			fseek(PosAndVelFile, frame * sizeof(glm::vec4) * 2 * N, SEEK_CUR);
+			fseek(NodeStructFile, frame * sizeof(nodeAtributesStructure) * 2 * N, SEEK_CUR);
 			glm::vec4 *pos = new glm::vec4[N];
 			glm::vec4 *vel;
-			fread(pos, sizeof(glm::vec4), (int)N, PosAndVelFile);
+			fread(pos, sizeof(glm::vec4), (int)N, NodeStructFile);
 			part->changeTranslations(N,pos);
 			if(readVelocity)
 			{
 				vel = new glm::vec4[N];
-				fread(vel, sizeof(glm::vec4), N, PosAndVelFile);
+				fread(vel, sizeof(glm::vec4), N, NodeStructFile);
 				part->changeVelocities(vel);
 				delete[] vel;
 			}
 			delete[] pos;
-			fclose(PosAndVelFile);
+			fclose(NodeStructFile);
 			return;
 		}
-		//fclose(PosAndVelFile);
+		//fclose(NodeStructFile);
 		errorCount++;
 		if(errorCount < 5)
 		{
@@ -366,7 +370,7 @@ public:
 			std::string settings = folder + statsFile;//strcat(folder, settingsFile.c_str());
 			std::string comName = folder + comFile;
 			SettingsIO *set = new SettingsIO(posVel.c_str(),settings.c_str(),comName.c_str());
-			set->readPosVelFile(0,part,readVelocity);
+			set->readNodeStructFile(0,part,readVelocity);
 			return set;
 		}
 		std::cout << "Folder not selected" << std::endl;

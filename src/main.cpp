@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 
 		glfwSwapBuffers(window);
 
-		if(set->frames > 1)			{ set->readPosVelFile(curFrame,part,false);}
+		if(set->frames > 1)			{ set->readNodeStructFile(curFrame,part,false);}
 		if(set->isPlaying)			{ curFrame++;}
 		if(curFrame > set->frames)	{ curFrame = set->frames;}
 		minor_keyCallback();
